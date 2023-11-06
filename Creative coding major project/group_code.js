@@ -180,21 +180,6 @@ function setup() {
   // Detect yellow regions on the canvas and store their coordinates in the yellowRegions array.
   // Generate random rectangles with different colors within the detected yellow regions.
   // Draw extra yellow rectangles and other colored rectangles.
-// function draw() {
-//   background(240);
-
-//   yellowRects.forEach(r => r.draw());
-
-//   detectYellowRegions();
-//   generateRandomRectangles();
-
-//   extraYellowRects.forEach(r => r.draw());
-//   blueRects.forEach(r => r.draw());
-//   redRects.forEach(r => r.draw());
-//   grayRects.forEach(r => r.draw());
-
-
-// }
 
 function draw() {
   background(240);
