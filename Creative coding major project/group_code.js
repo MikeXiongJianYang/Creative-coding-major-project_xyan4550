@@ -171,14 +171,31 @@ function setup() {
   grayRects.push(new grayRect(400,900,pixelLength*3,60));
   grayRects.push(new grayRect(660,420,pixelLength*3,60));
   grayRects.push(new grayRect(640,540,pixelLength*5,20));
+  // Defines 8 frames that should be displayed per second.
+  frameRate(8);
 
-  
 }
 // Clear the canvas and set its background color.
   // Draw all yellow rectangles from the yellowRects array.
   // Detect yellow regions on the canvas and store their coordinates in the yellowRegions array.
   // Generate random rectangles with different colors within the detected yellow regions.
   // Draw extra yellow rectangles and other colored rectangles.
+// function draw() {
+//   background(240);
+
+//   yellowRects.forEach(r => r.draw());
+
+//   detectYellowRegions();
+//   generateRandomRectangles();
+
+//   extraYellowRects.forEach(r => r.draw());
+//   blueRects.forEach(r => r.draw());
+//   redRects.forEach(r => r.draw());
+//   grayRects.forEach(r => r.draw());
+
+
+// }
+
 function draw() {
   background(240);
 
@@ -192,8 +209,58 @@ function draw() {
   redRects.forEach(r => r.draw());
   grayRects.forEach(r => r.draw());
 
+  
+  for (let i = 0; i < blueRects.length; i++) {
+    blueRects[i].draw();
+
+    // Check if the mouse is over the blue rectangle
+    if (
+      mouseX > blueRects[i].x &&
+      mouseX < blueRects[i].x + blueRects[i].width &&
+      mouseY > blueRects[i].y &&
+      mouseY < blueRects[i].y + blueRects[i].height
+    ) {
+      // If the mouse is over the rectangle, move it to a random location
+      blueRects[i].x = random(width);
+      blueRects[i].y = random(height);
+    }
+  }
+
+  for (let i = 0; i < redRects.length; i++) {
+    redRects[i].draw();
+
+    // Check if the mouse is over the red rectangle
+    if (
+      mouseX > redRects[i].x &&
+      mouseX < redRects[i].x + redRects[i].width &&
+      mouseY > redRects[i].y &&
+      mouseY < redRects[i].y + redRects[i].height
+    ) {
+      // If the mouse is over the rectangle, move it to a random location
+      redRects[i].x = random(width);
+      redRects[i].y = random(height);
+    }
+  }
+
+  for (let i = 0; i < grayRects.length; i++) {
+    grayRects[i].draw();
+
+    // Check if the mouse is over the gray rectangle
+    if (
+      mouseX > grayRects[i].x &&
+      mouseX < grayRects[i].x + grayRects[i].width &&
+      mouseY > grayRects[i].y &&
+      mouseY < grayRects[i].y + grayRects[i].height
+    ) {
+      // If the mouse is over the rectangle, move it to a random location
+      grayRects[i].x = random(width);
+      grayRects[i].y = random(height);
+    }
+  }
 
 }
+
+
   // Load pixel data from the canvas.
   // Iterate over the canvas, checking for yellow-colored pixels and adding their coordinates to yellowRegions.
   // Update the canvas with the modified pixel data.
@@ -212,16 +279,16 @@ function detectYellowRegions() {
 // Prevent further drawing in the loop.
   // Define an array of colors to choose from.
   // Generate 300 random rectangles with colors and positions based on the yellowRegions.
-function generateRandomRectangles() {
-  noLoop();
-  let colors = ["#225095","#dd0100","#c8c8c8"];
-
-  for (let i = 0; i < 300; i++) {
-    let region = random(yellowRegions);
-    let colorIndex = floor(random(colors.length));
-
-    noStroke();
-    fill(colors[colorIndex]);
-    rect(region.x, region.y, pixelLength, pixelLength);
+  function generateRandomRectangles() {
+    // noLoop();
+    let colors = ["#225095","#dd0100","#c8c8c8"];
+  
+    for (let i = 0; i < 300; i++) {
+      let region = random(yellowRegions);
+      let colorIndex = floor(random(colors.length));
+  
+      noStroke();
+      fill(colors[colorIndex]);
+      rect(region.x, region.y, pixelLength, pixelLength);
+    }
   }
-}
